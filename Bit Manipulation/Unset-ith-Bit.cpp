@@ -14,6 +14,10 @@ int main()
   cin >> t;
   while (t--)
   {
+    int n, i;
+    cin >> n >> i;
+    int k = 1 << i;
+    cout << (n & ~k) << endl;
   }
   return 0;
 }

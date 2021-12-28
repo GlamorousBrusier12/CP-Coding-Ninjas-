@@ -14,6 +14,17 @@ int main()
   cin >> t;
   while (t--)
   {
+    int n;
+    cin >> n;
+    int ans = 0;
+    fin(i, 0, n)
+    {
+      int num;
+      cin >> num;
+      ans = ans ^ num;
+      // cout << ans << ' ';
+    }
+    cout << ans << endl;
   }
   return 0;
 }
