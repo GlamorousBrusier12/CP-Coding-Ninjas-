@@ -6,12 +6,8 @@
 #define ll long long
 #define mod 1000000007
 using namespace std;
-int main()
+int numPrimes(int n)
 {
-  freopen("input.txt", "r", stdin);
-  freopen("output.txt", "w", stdout);
-  int n;
-  cin >> n;
   bool seive[n + 1];
   // seive[0] = true;
   memset(seive, true, sizeof(seive));
@@ -32,6 +28,21 @@ int main()
   {
     (seive[i] == true) ? count++ : (NULL);
   }
-  cout << count << endl;
+  return count;
+}
+int main()
+{
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+  int t;
+  cin >> t;
+  while (t--)
+  {
+    int n;
+    cin >> n;
+    int num_primes = numPrimes(n + 1);
+    cout << 2 << endl;
+    cout << min(num_primes, n - num_primes) << ' ' << max(num_primes, n - num_primes) << endl;
+  }
   return 0;
 }

@@ -39,6 +39,11 @@ void extended(int a, int b)
   Tri ans = extended_euclid(a, b);
   cout << "ans.x : " << ans.x << " ans.y : " << ans.y << endl;
 }
+int mmInverse(int a, int m)
+{
+  Tri ans = extended_euclid(a, m);
+  return ans.x;
+}
 int main()
 {
   freopen("input.txt", "r", stdin);
@@ -47,9 +52,10 @@ int main()
   cin >> t;
   while (t--)
   {
-    int a, b;
-    cin >> a >> b;
-    extended(a, b);
+    int a, m;
+    cin >> a >> m;
+    // extended(a, b);
+    cout << mmInverse(a, m) << endl;
   }
   return 0;
 }
