@@ -34,11 +34,6 @@ Tri extended_euclid(int a, int b)
   Tri ans2(x, y, ans1);
   return ans2;
 }
-void extended(int a, int b)
-{
-  Tri ans = extended_euclid(a, b);
-  cout << "ans.x : " << ans.x << " ans.y : " << ans.y << endl;
-}
 int mmInverse(int a, int m)
 {
   Tri ans = extended_euclid(a, m);
