@@ -13,7 +13,6 @@ int main()
   int n;
   cin >> n;
   bool seive[n + 1];
-  // seive[0] = true;
   memset(seive, true, sizeof(seive));
   seive[0] = seive[1] = false;
   fin(i, 2, n)
