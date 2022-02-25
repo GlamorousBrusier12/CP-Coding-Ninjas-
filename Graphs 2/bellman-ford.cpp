@@ -28,7 +28,6 @@ int main()
       cin >> edg[i].src >> edg[i].dest >> edg[i].wt;
       // cout << edg[i].src << ' ' << edg[i].dest << ' ' << edg[i].wt << '\n';
     }
-    // printf("edges shit done\n");
     int wt[v + 1];
     fin(i, 0, v + 1)
     {
