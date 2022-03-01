@@ -6,6 +6,18 @@
 #define ll long long
 #define mod 1000000007
 using namespace std;
+int getMinVertex(bool visited[], int n, int weight[])
+{
+  int minVertex = -1;
+  fin(i, 0, n)
+  {
+    if (visited[i] == false && (minVertex == -1 || weight[i] < weight[minVertex]))
+    {
+      minVertex = i;
+    }
+  }
+  return minVertex;
+}
 int main()
 {
   freopen("input.txt", "r", stdin);
@@ -22,7 +34,6 @@ int main()
       edges[i] = new int[v];
       memset(edges[i], 0, sizeof(int) * v);
     }
-
     fin(i, 0, e)
     {
       int a, b, wt;
@@ -37,9 +48,6 @@ int main()
         edges[a][b] = edges[b][a] = min(edges[a][b], wt);
       }
     }
-    priority_queue<pii, vector<pii>, greater<pii>> minQueue;
-    // minQueue.top().first = wt,
-    // minQueue.top().second = nodeIndex
     int parent[v], wt[v];
     fin(i, 0, v)
     {
@@ -48,30 +56,25 @@ int main()
     }
     parent[0] = 0;
     wt[0] = 0;
+
     bool *visited = new bool[v];
     memset(visited, false, sizeof(bool) * v);
     int visitedCount = 0;
-    minQueue.push(make_pair(0, 0));
+    int minIndex = 0;
     while (visitedCount != v)
     {
-      pii current = minQueue.top();
-      int curIndex = current.second;
-      int currWt = current.first;
-      minQueue.pop();
-      if (visited[curIndex] == true || wt[curIndex] != currWt)
-      {
-        continue;
-      }
+      int curIndex = getMinVertex(visited, v, wt);
+      int currWt = wt[curIndex];
+      visited[curIndex] = true;
       fin(i, 0, v)
       {
-        if (edges[i][curIndex] != 0 && edges[i][curIndex] < wt[i])
+        if (visited[i] != true && edges[i][curIndex] > 0 && edges[i][curIndex] < wt[i])
         {
           wt[i] = edges[i][curIndex];
           parent[i] = curIndex;
-          minQueue.push(make_pair(wt[i], i));
+          // printf("updated %d to %d=>%d\n", i, wt[i], parent[i]);
         }
       }
-      visited[curIndex] = true;
       visitedCount++;
     }
     int ans = 0;
